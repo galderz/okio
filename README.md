@@ -251,6 +251,14 @@ For the most part Okio lets you ignore these problems and focus on your data.
 But when you need them, there are convenient APIs for dealing with low-level
 UTF-8 strings.
 
+When converting UTF-8 bytes to Java Strings (UTF-16), Okio replaces invalid
+character sequences with the Unicode replacement character `�`.
+Equivalent JVM APIs also behave in this way.
+
+When converting a Java String (UTF-16) to UTF-8 bytes, Okio replaces invalid
+character sequences with the Unicode replacement character `?`.
+Equivalent JVM APIs also behave in this way.
+
 Use `Utf8.size()` to count the number of bytes required to encode a string as
 UTF-8 without actually encoding it. This is handy in length-prefixed encodings
 like protocol buffers.
